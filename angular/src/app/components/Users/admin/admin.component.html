@@ -1,0 +1,228 @@
+<div class="admin-component">
+  <div class="admin-component-container">
+    <app-header
+      *ngIf="currentUserLoaded"
+      [currentUser]="currentUser.user"
+    ></app-header>
+
+    <section class="section-top">
+      <div class="breadcrumb">
+        <h5 *ngIf="currentUserLoaded">Home - {{ currentUser.user.role }}</h5>
+      </div>
+
+      <div class="cards">
+        <div 
+          *ngIf="currentUserLoaded"
+          class="card highlight"
+          [routerLink]="['/announcements/', currentUser.user.role.toLowerCase(), currentUser.user.id]"
+        >
+          <div class="card-info">
+            <p>Add an Announcement</p>
+          </div>
+
+          <fa-icon [icon]="faBullhorn" class="card-icon announcement"></fa-icon>
+
+          <div class="expand">
+            <p>
+              More info
+              <fa-icon [icon]="faPlusCircle"></fa-icon>
+            </p>
+          </div>
+        </div>
+
+        <div
+          *ngIf="currentUserLoaded"
+          class="card highlight"
+          [routerLink]="['/marks/', currentUser.user.role.toLowerCase(), currentUser.user.id]"
+        >
+          <div class="card-info">
+            <p>Mark Grades, Attendances</p>
+          </div>
+
+          <fa-icon [icon]="faBook" class="card-icon"></fa-icon>
+
+          <div class="expand">
+            <p>
+              More info
+              <fa-icon [icon]="faPlusCircle"></fa-icon>
+            </p>
+          </div>
+        </div>
+
+        <div
+          *ngIf="currentUserLoaded"
+          class="card highlight"
+          [routerLink]="['/sessions/', currentUser.user.role.toLowerCase(), currentUser.user.id]"
+        >
+          <div class="card-info">
+            <p>Manage Sessions</p>
+          </div>
+          
+          <fa-icon [icon]="faEdit" class="card-icon"></fa-icon>
+
+          <div class="expand">
+            <p>
+              More info
+              <fa-icon [icon]="faPlusCircle" class="info-btn"></fa-icon>
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="card highlight"
+          (click)="toggleCourses()"
+          [ngStyle]="{
+            'box-shadow' : showCourses ? '0px 0px 6px 1px rgba(0,0,0,0.75)' : 'none'
+          }"
+        >
+          <div class="card-info">
+            <span *ngIf="currentUserLoaded">
+              {{ onGoingCourses }}
+            </span>
+
+            <p>Courses</p>
+          </div>
+
+          <fa-icon [icon]="faGraduationCap" class="card-icon"></fa-icon>
+
+          <div class="expand">
+            <p>
+              More info
+              <fa-icon [icon]="faPlusCircle" class="info-btn"></fa-icon>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="cards">
+        <div
+          *ngIf="currentUserLoaded"
+          class="card highlight"
+          [routerLink]="['/courses/', currentUser.user.role.toLowerCase(), currentUser.user.id]"
+        >
+          <div class="card-info">
+            <p>View Courses</p>
+          </div>
+
+          <fa-icon [icon]="faBook" class="card-icon"></fa-icon>
+
+          <div class="expand">
+            <p>
+              More info
+              <fa-icon [icon]="faPlusCircle"></fa-icon>
+            </p>
+          </div>
+        </div>
+
+        <div
+          *ngIf="currentUserLoaded"
+          class="card highlight"
+          [routerLink]="['/courses/create/', currentUser.user.role.toLowerCase(), currentUser.user.id]"
+        >
+          <div class="card-info">
+            <p>Create Course</p>
+          </div>
+
+          <fa-icon [icon]="faEdit" class="card-icon"></fa-icon>
+
+          <div class="expand">
+            <p>
+              More info
+              <fa-icon [icon]="faPlusCircle"></fa-icon>
+            </p>
+          </div>
+        </div>
+
+        <div
+          *ngIf="currentUserLoaded"
+          class="card highlight"
+          [routerLink]="['/users/', currentUser.user.role.toLowerCase(), currentUser.user.id]"
+        >
+          <div class="card-info">
+            <p>View Users</p>
+          </div>
+
+          <fa-icon [icon]="faUserGraduate" class="card-icon"></fa-icon>
+
+          <div class="expand">
+            <p>
+              More info
+              <fa-icon [icon]="faPlusCircle"></fa-icon>
+            </p>
+          </div>
+        </div>
+
+        <div
+          *ngIf="currentUserLoaded"
+          class="card highlight"
+          [routerLink]="['/users/create/', currentUser.user.role.toLowerCase(), currentUser.user.id]"
+        >
+          <div class="card-info">
+            <p>Create User</p>
+          </div>
+
+          <fa-icon [icon]="faEdit" class="card-icon"></fa-icon>
+
+          <div class="expand">
+            <p>
+              More info
+              <fa-icon [icon]="faPlusCircle"></fa-icon>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-top-card-info" *ngIf="showCourses">
+      <app-course-table [currentUser]="currentUser.user"></app-course-table>
+    </section>
+
+    <p>-- Cards</p>
+<p>  -- Courses</p>
+<p>    -- List of Paginated Courses</p>
+<p>      -- Course</p>
+<p>        -- All Information(Sessions, Users, Grades, Attendances) (Paginated?)</p>
+<p>  -- Users</p>
+<p>    -- List of Paginated Users</p>
+<p>      -- User</p>
+<p>        -- User data(AVG grade, AVG attendance, profile info, joined Courses)</p>
+
+
+<p>-- Courses</p>
+<p>-- Create new Course</p>
+<p>-- Users</p>
+<p>-- Create new Users</p>
+
+    <section class="section-middle">
+      <div class="profile-left">
+        <app-profile-information
+          *ngIf="currentUserLoaded"
+          [currentUser]="currentUser.user"
+        ></app-profile-information>
+
+        <img src="../../../assets/students.jpg" alt="graduation">
+      </div>
+
+      <div class="profile-right">
+        <app-session-list
+          *ngIf="currentUserLoaded"
+          [currentUser]="currentUser.user"
+        ></app-session-list>
+      </div>
+    </section>
+
+    <app-charts></app-charts>
+
+      <app-student-announcement-list
+        *ngIf="currentUserLoaded"
+        [currentUser]="currentUser.user"
+      ></app-student-announcement-list>
+    <app-footer></app-footer>
+  </div>
+</div>
+
+
+
+
+
+
