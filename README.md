@@ -6,7 +6,7 @@ This project was given and build during SDA "Java from scratch" course final pro
 - Different User roles
 - Angular & Spring Boot
 
-Project is hosted with [Aws](http://sda-studentmanagement.s3-website.eu-north-1.amazonaws.com/).<br />
+Project [link](http://sda-studentmanagement.s3-website.eu-north-1.amazonaws.com/), hosted with AWS.<br />
 - Different access accounts are listed in login page for testing.<br />
 
 Spring Boot server of the applicattion is in **src** folder.<br />
