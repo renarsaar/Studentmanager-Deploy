@@ -1,5 +1,3 @@
-# Studentmanager-Deploy
-
 # General Info:
 This project was given and build during SDA "Java from scratch" course final project. [Original Repository](https://github.com/h2ving/studentmanager)
 - School Management System with Courses, Sessions, Grades, Attendances, Announcements
